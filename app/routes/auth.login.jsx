@@ -54,8 +54,8 @@ export default function Auth() {
           🔥
         </div>
         
-        <h1 style={{ marginTop: 0, fontSize: "28px", fontWeight: "bold", color: "#1A1A1A" }}>Stock Badges</h1>
-        <p style={{ color: "#666", fontSize: "16px", marginBottom: "32px", lineHeight: "1.5" }}>
+        <h1 style={{ margin: "0 0 16px 0", fontSize: "28px", fontWeight: "bold", color: "#1A1A1A" }}>Stock Badges</h1>
+        <p style={{ color: "#666", fontSize: "16px", margin: "0 0 32px 0", lineHeight: "1.5" }}>
           Supercharge your sales with beautiful urgency badges. Log in to get started.
         </p>
         
