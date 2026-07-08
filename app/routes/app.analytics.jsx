@@ -101,7 +101,7 @@ export default function Analytics() {
                 {chartData.map((data, index) => {
                   const heightPercent = Math.max((data.views / maxViews) * 100, 2); // Minimum 2% height for visibility
                   return (
-                    <div key={index} style={{ display: "flex", flexDirection: "column", alignItems: "center", flex: 1, gap: "8px" }}>
+                    <div key={index} style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end", flex: 1, height: "100%", gap: "8px" }}>
                       <div 
                         title={`${data.displayDate}: ${data.views} views`}
                         style={{ 
