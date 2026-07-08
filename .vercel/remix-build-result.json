@@ -1,0 +1,195 @@
+{
+  "buildManifest": {
+    "serverBundles": {
+      "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0": {
+        "id": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
+        "file": "build/server/nodejs-eyJydW50aW1lIjoibm9kZWpzIn0/index.js",
+        "config": {
+          "runtime": "nodejs"
+        }
+      }
+    },
+    "routeIdToServerBundleId": {
+      "routes/api.settings": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/app.pricing": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/app.support": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/app.design": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/app._index": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/auth.login": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/auth.$": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/_index": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0"
+    },
+    "routes": {
+      "root": {
+        "path": "",
+        "id": "root",
+        "file": "app/root.jsx",
+        "config": {}
+      },
+      "routes/api.settings": {
+        "file": "app/routes/api.settings.jsx",
+        "id": "routes/api.settings",
+        "path": "api/settings",
+        "parentId": "root",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/app.pricing": {
+        "file": "app/routes/app.pricing.jsx",
+        "id": "routes/app.pricing",
+        "path": "pricing",
+        "parentId": "routes/app",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/app.support": {
+        "file": "app/routes/app.support.jsx",
+        "id": "routes/app.support",
+        "path": "support",
+        "parentId": "routes/app",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/app.design": {
+        "file": "app/routes/app.design.jsx",
+        "id": "routes/app.design",
+        "path": "design",
+        "parentId": "routes/app",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/app._index": {
+        "file": "app/routes/app._index.jsx",
+        "id": "routes/app._index",
+        "index": true,
+        "parentId": "routes/app",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/auth.login": {
+        "file": "app/routes/auth.login.jsx",
+        "id": "routes/auth.login",
+        "path": "auth/login",
+        "parentId": "root",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/auth.$": {
+        "file": "app/routes/auth.$.jsx",
+        "id": "routes/auth.$",
+        "path": "auth/*",
+        "parentId": "root",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/_index": {
+        "file": "app/routes/_index.jsx",
+        "id": "routes/_index",
+        "index": true,
+        "parentId": "root",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/app": {
+        "file": "app/routes/app.jsx",
+        "id": "routes/app",
+        "path": "app",
+        "parentId": "root",
+        "config": {}
+      }
+    }
+  },
+  "remixConfig": {
+    "appDirectory": "D:\\Sabai Stuff\\Stock Badges\\stockbadge\\app",
+    "basename": "/",
+    "buildDirectory": "D:\\Sabai Stuff\\Stock Badges\\stockbadge\\build",
+    "future": {
+      "v3_fetcherPersist": false,
+      "v3_relativeSplatPath": false,
+      "v3_throwAbortReason": false,
+      "v3_routeConfig": false,
+      "v3_singleFetch": false,
+      "v3_lazyRouteDiscovery": false,
+      "unstable_optimizeDeps": false
+    },
+    "manifest": false,
+    "publicPath": "/",
+    "routes": {
+      "root": {
+        "path": "",
+        "id": "root",
+        "file": "root.jsx"
+      },
+      "routes/api.settings": {
+        "file": "routes/api.settings.jsx",
+        "id": "routes/api.settings",
+        "path": "api/settings",
+        "parentId": "root"
+      },
+      "routes/app.pricing": {
+        "file": "routes/app.pricing.jsx",
+        "id": "routes/app.pricing",
+        "path": "pricing",
+        "parentId": "routes/app"
+      },
+      "routes/app.support": {
+        "file": "routes/app.support.jsx",
+        "id": "routes/app.support",
+        "path": "support",
+        "parentId": "routes/app"
+      },
+      "routes/app.design": {
+        "file": "routes/app.design.jsx",
+        "id": "routes/app.design",
+        "path": "design",
+        "parentId": "routes/app"
+      },
+      "routes/app._index": {
+        "file": "routes/app._index.jsx",
+        "id": "routes/app._index",
+        "index": true,
+        "parentId": "routes/app"
+      },
+      "routes/auth.login": {
+        "file": "routes/auth.login.jsx",
+        "id": "routes/auth.login",
+        "path": "auth/login",
+        "parentId": "root"
+      },
+      "routes/auth.$": {
+        "file": "routes/auth.$.jsx",
+        "id": "routes/auth.$",
+        "path": "auth/*",
+        "parentId": "root"
+      },
+      "routes/_index": {
+        "file": "routes/_index.jsx",
+        "id": "routes/_index",
+        "index": true,
+        "parentId": "root"
+      },
+      "routes/app": {
+        "file": "routes/app.jsx",
+        "id": "routes/app",
+        "path": "app",
+        "parentId": "root"
+      }
+    },
+    "serverBuildFile": "index.js",
+    "serverModuleFormat": "esm",
+    "ssr": true
+  },
+  "viteConfig": {
+    "build": {
+      "assetsDir": "assets"
+    }
+  }
+}
