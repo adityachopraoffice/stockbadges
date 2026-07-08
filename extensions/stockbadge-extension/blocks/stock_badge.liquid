@@ -1,0 +1,10 @@
+<div id="stockbadge-wrapper" data-shop="{{ shop.permanent_domain }}" data-inventory="{{ product.variants.first.inventory_quantity | default: 5 }}"></div>
+<script src="{{ 'stock-badge.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Stock Badge",
+  "target": "section",
+  "settings": []
+}
+{% endschema %}

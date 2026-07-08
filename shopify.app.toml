@@ -1,0 +1,12 @@
+name = "stockbadge"
+embedded = true
+
+[access_scopes]
+scopes = "read_products,read_inventory"
+
+[auth]
+redirect_urls = ["your_vercel_url/auth/callback"]
+
+[webhooks]
+api_version = "2024-01"
+
