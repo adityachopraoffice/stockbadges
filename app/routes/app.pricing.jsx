@@ -116,19 +116,23 @@ export default function Pricing() {
           <Badge tone="warning">Most Popular</Badge>
         </div>
       )}
-      <BlockStack gap="400" style={{ flexGrow: 1 }}>
-        <div style={{ textAlign: "center" }}>
-          <Text variant="headingLg" as="h2">{title}</Text>
-          <div style={{ margin: "16px 0" }}>
-            <Text variant="heading3xl" as="h1" fontWeight="bold">{price}</Text>
-          </div>
+      
+      <div style={{ textAlign: "center", marginBottom: "16px" }}>
+        <Text variant="headingLg" as="h2">{title}</Text>
+        <div style={{ margin: "16px 0" }}>
+          <Text variant="heading3xl" as="h1" fontWeight="bold">{price}</Text>
         </div>
-        <Divider />
-        <div style={{ flexGrow: 1, padding: "16px 0" }}>
-          <List spacing="extraLoose">
-            {features.map((f, i) => <List.Item key={i}>{f}</List.Item>)}
-          </List>
-        </div>
+      </div>
+      
+      <Divider />
+      
+      <div style={{ flexGrow: 1, padding: "24px 0", textAlign: "left" }}>
+        <ul style={{ paddingLeft: "20px", margin: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
+          {features.map((f, i) => <li key={i}><Text variant="bodyMd">{f}</Text></li>)}
+        </ul>
+      </div>
+      
+      <div style={{ marginTop: "auto" }}>
         <Button 
           size="large"
           variant={current ? "plain" : (recommended ? "primary" : "secondary")}
@@ -139,7 +143,7 @@ export default function Pricing() {
         >
           {current ? "Current Plan" : "Select Plan"}
         </Button>
-      </BlockStack>
+      </div>
     </div>
   );
 
