@@ -49,6 +49,19 @@ document.addEventListener("DOMContentLoaded", async function() {
       
       wrapper.appendChild(badgeDiv);
       console.log("StockBadge added to DOM!");
+
+      // Track the view/alert
+      fetch(`/apps/stockbadge/api/track`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          shop: shop,
+          eventType: "alert" // Since it's shown, it's an alert
+        }),
+        keepalive: true
+      }).catch(err => console.error("Failed to track stock badge view", err));
     }
   } catch (err) {
     console.error("Error fetching stockbadge settings", err);

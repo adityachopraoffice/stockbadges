@@ -23,14 +23,38 @@ export async function loader({ request }) {
     where: { shop },
   });
 
+  // Calculate past 7 days range
+  const today = new Date();
+  today.setHours(23, 59, 59, 999);
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(today.getDate() - 7);
+  sevenDaysAgo.setHours(0, 0, 0, 0);
+
+  const metrics = await prisma.dailyMetrics.findMany({
+    where: {
+      shop,
+      date: {
+        gte: sevenDaysAgo,
+        lte: today
+      }
+    }
+  });
+
+  const totalViews = metrics.reduce((acc, curr) => acc + curr.views, 0);
+  const totalAlerts = metrics.reduce((acc, curr) => acc + curr.alerts, 0);
+
   return json({
     shop,
-    active: settings?.active ?? true
+    active: settings?.active ?? true,
+    stats: {
+      views: totalViews,
+      alerts: totalAlerts,
+    }
   });
 }
 
 export default function Dashboard() {
-  const { active } = useLoaderData();
+  const { active, stats } = useLoaderData();
   const navigate = useNavigate();
 
   return (
@@ -67,28 +91,17 @@ export default function Dashboard() {
 
       <Layout>
         <Layout.Section>
-          <Text as="h2" variant="headingLg">Performance Overview</Text>
+          <Text as="h2" variant="headingLg">Performance Overview (Last 7 Days)</Text>
           <div style={{ height: "16px" }} />
-          <InlineGrid columns={3} gap="400">
+          <InlineGrid columns={2} gap="400">
             <div style={{ background: "#fff", padding: "24px", borderRadius: "12px", boxShadow: "0 2px 10px rgba(0,0,0,0.05)", border: "1px solid #EBEBEB" }}>
               <BlockStack gap="200">
                 <div style={{ background: "#EBF1FF", width: "40px", height: "40px", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", color: "#2962FF" }}>
                   <Icon source={ViewIcon} />
                 </div>
                 <Text as="p" variant="bodyMd" tone="subdued">Badge Views</Text>
-                <Text as="h3" variant="heading2xl">12,450</Text>
-                <Text as="p" variant="bodySm" tone="success">↑ 14% this week</Text>
-              </BlockStack>
-            </div>
-            
-            <div style={{ background: "#fff", padding: "24px", borderRadius: "12px", boxShadow: "0 2px 10px rgba(0,0,0,0.05)", border: "1px solid #EBEBEB" }}>
-              <BlockStack gap="200">
-                <div style={{ background: "#E8F5E9", width: "40px", height: "40px", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", color: "#2E7D32" }}>
-                  <Icon source={ChartVerticalIcon} />
-                </div>
-                <Text as="p" variant="bodyMd" tone="subdued">Items Sold with Badge</Text>
-                <Text as="h3" variant="heading2xl">842</Text>
-                <Text as="p" variant="bodySm" tone="success">↑ 8% this week</Text>
+                <Text as="h3" variant="heading2xl">{stats.views.toLocaleString()}</Text>
+                <Text as="p" variant="bodySm" tone="success">Active Tracking Enabled</Text>
               </BlockStack>
             </div>
 
@@ -98,8 +111,8 @@ export default function Dashboard() {
                   <Icon source={DeliveryIcon} />
                 </div>
                 <Text as="p" variant="bodyMd" tone="subdued">Low Stock Alerts Triggered</Text>
-                <Text as="h3" variant="heading2xl">156</Text>
-                <Text as="p" variant="bodySm" tone="subdued">Steady</Text>
+                <Text as="h3" variant="heading2xl">{stats.alerts.toLocaleString()}</Text>
+                <Text as="p" variant="bodySm" tone="success">Active Tracking Enabled</Text>
               </BlockStack>
             </div>
           </InlineGrid>

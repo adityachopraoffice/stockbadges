@@ -41,3 +41,13 @@ model ShopSettings {
   badgeBorderRadius String   @default("4px")
   mockPlan          String   @default("Free")
 }
+
+model DailyMetrics {
+  id        String   @id @default(uuid())
+  shop      String
+  date      DateTime @db.Date
+  views     Int      @default(0)
+  alerts    Int      @default(0)
+  
+  @@unique([shop, date])
+}
