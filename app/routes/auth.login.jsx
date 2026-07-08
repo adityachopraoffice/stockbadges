@@ -59,7 +59,7 @@ export default function Auth() {
           Supercharge your sales with beautiful urgency badges. Log in to get started.
         </p>
         
-        {errors && (
+        {errors?.shop && (
           <div style={{ background: "#FEE2E2", color: "#B91C1C", padding: "12px", borderRadius: "8px", marginBottom: "20px", fontSize: "14px" }}>
             {errors.shop}
           </div>
