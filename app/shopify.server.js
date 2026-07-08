@@ -12,7 +12,7 @@ export const shopify = shopifyApp({
   apiSecretKey: process.env.SHOPIFY_API_SECRET || "",
   apiVersion: "2024-07",
   scopes: process.env.SCOPES?.split(",") || ["read_products", "read_inventory"],
-  appUrl: process.env.HOST || "",
+  appUrl: process.env.SHOPIFY_APP_URL || process.env.HOST || "",
   authPathPrefix: "/auth",
   sessionStorage: new PrismaSessionStorage(prisma),
   distribution: AppDistribution.AppStore,
