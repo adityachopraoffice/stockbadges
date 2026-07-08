@@ -108,7 +108,7 @@ export default function Analytics() {
                           width: "100%", 
                           maxWidth: "40px", 
                           height: `${heightPercent}%`, 
-                          background: "linear-gradient(180deg, #303273 0%, #2962FF 100%)", 
+                          background: "linear-gradient(180deg, #FF6B6B 0%, #FF8E53 100%)", 
                           borderRadius: "4px 4px 0 0",
                           transition: "height 0.3s ease",
                           cursor: "pointer"

@@ -59,18 +59,19 @@ export default function Dashboard() {
 
   return (
     <Page fullWidth>
-      {/* Custom Hero Banner */}
+      {/* Custom Hero Banner - WARM SUNRISE */}
       <div style={{
-        background: "linear-gradient(135deg, #1A1B41 0%, #303273 100%)",
+        background: "linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%)",
         borderRadius: "16px",
         padding: "40px",
         color: "white",
         marginBottom: "32px",
-        boxShadow: "0 10px 30px rgba(48, 50, 115, 0.2)",
+        boxShadow: "0 10px 30px rgba(255, 107, 107, 0.3)",
         position: "relative",
         overflow: "hidden"
       }}>
-        <div style={{ position: "absolute", top: "-50px", right: "-50px", width: "200px", height: "200px", borderRadius: "50%", background: "rgba(255,255,255,0.05)" }} />
+        <div style={{ position: "absolute", top: "-50px", right: "-50px", width: "200px", height: "200px", borderRadius: "50%", background: "rgba(255,255,255,0.15)" }} />
+        <div style={{ position: "absolute", bottom: "-80px", left: "20%", width: "150px", height: "150px", borderRadius: "50%", background: "rgba(255,255,255,0.1)" }} />
         
         <BlockStack gap="400">
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -79,12 +80,14 @@ export default function Dashboard() {
           <Text as="h1" variant="heading3xl" fontWeight="bold">
             Supercharge Your Sales
           </Text>
-          <p style={{ fontSize: "16px", color: "rgba(255,255,255,0.8)", maxWidth: "500px", margin: 0, lineHeight: "1.5" }}>
+          <p style={{ fontSize: "16px", color: "rgba(255,255,255,0.9)", maxWidth: "500px", margin: 0, lineHeight: "1.5" }}>
             Stock badges create urgency and trust. Stores using our customized badges see an average conversion lift of 12%.
           </p>
           <div style={{ display: "flex", gap: "16px", marginTop: "16px" }}>
-            <Button size="large" variant="primary" onClick={() => navigate("/app/design")}>Customize Badge</Button>
-            <Button size="large" onClick={() => navigate("/app/pricing")}>Upgrade Plan</Button>
+            <Button size="large" onClick={() => navigate("/app/design")}>Customize Badge</Button>
+            <Button size="large" variant="plain" onClick={() => navigate("/app/pricing")}>
+              <span style={{color: "white"}}>Upgrade Plan →</span>
+            </Button>
           </div>
         </BlockStack>
       </div>
@@ -94,9 +97,9 @@ export default function Dashboard() {
           <Text as="h2" variant="headingLg">Performance Overview (Last 7 Days)</Text>
           <div style={{ height: "16px" }} />
           <InlineGrid columns={2} gap="400">
-            <div style={{ background: "#fff", padding: "24px", borderRadius: "12px", boxShadow: "0 2px 10px rgba(0,0,0,0.05)", border: "1px solid #EBEBEB" }}>
+            <div style={{ background: "#fff", padding: "24px", borderRadius: "16px", boxShadow: "0 4px 20px rgba(0,0,0,0.04)", border: "1px solid #FFF0F0" }}>
               <BlockStack gap="200">
-                <div style={{ background: "#EBF1FF", width: "40px", height: "40px", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", color: "#2962FF" }}>
+                <div style={{ background: "#FFE8E8", width: "48px", height: "48px", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", color: "#FF4D4D" }}>
                   <Icon source={ViewIcon} />
                 </div>
                 <Text as="p" variant="bodyMd" tone="subdued">Badge Views</Text>
@@ -105,9 +108,9 @@ export default function Dashboard() {
               </BlockStack>
             </div>
 
-            <div style={{ background: "#fff", padding: "24px", borderRadius: "12px", boxShadow: "0 2px 10px rgba(0,0,0,0.05)", border: "1px solid #EBEBEB" }}>
+            <div style={{ background: "#fff", padding: "24px", borderRadius: "16px", boxShadow: "0 4px 20px rgba(0,0,0,0.04)", border: "1px solid #FFF0F0" }}>
               <BlockStack gap="200">
-                <div style={{ background: "#FFF3E0", width: "40px", height: "40px", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", color: "#E65100" }}>
+                <div style={{ background: "#FFF3E0", width: "48px", height: "48px", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", color: "#FF8F00" }}>
                   <Icon source={DeliveryIcon} />
                 </div>
                 <Text as="p" variant="bodyMd" tone="subdued">Low Stock Alerts Triggered</Text>
@@ -120,16 +123,18 @@ export default function Dashboard() {
 
         <Layout.Section variant="oneThird">
           <div style={{ height: "44px" }} />
-          <CalloutCard
-            title="Need Help?"
-            illustration="https://cdn.shopify.com/s/assets/admin/checkout/settings-customizecart-705f57c725ac05be5a34ec20c05b94298cb8afd10bf53cb21fd8a68d8ff4d642.svg"
-            primaryAction={{
-              content: 'View Setup Guide',
-              onAction: () => navigate("/app/support"),
-            }}
-          >
-            <p>Not sure how to add the badge to your product page? Check out our quick setup guide.</p>
-          </CalloutCard>
+          <div style={{ borderRadius: "16px", overflow: "hidden", boxShadow: "0 4px 20px rgba(0,0,0,0.04)" }}>
+            <CalloutCard
+              title="Need Help?"
+              illustration="https://cdn.shopify.com/s/assets/admin/checkout/settings-customizecart-705f57c725ac05be5a34ec20c05b94298cb8afd10bf53cb21fd8a68d8ff4d642.svg"
+              primaryAction={{
+                content: 'View Setup Guide',
+                onAction: () => navigate("/app/support"),
+              }}
+            >
+              <p>Not sure how to add the badge to your product page? Check out our quick setup guide.</p>
+            </CalloutCard>
+          </div>
         </Layout.Section>
       </Layout>
     </Page>

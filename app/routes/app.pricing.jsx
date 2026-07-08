@@ -10,7 +10,8 @@ import {
   InlineGrid,
   Divider,
   List,
-  Banner
+  Banner,
+  Badge
 } from "@shopify/polaris";
 import { authenticate } from "../shopify.server.js";
 
@@ -98,39 +99,79 @@ export default function Pricing() {
     submit({ plan }, { method: "post" });
   };
 
-  const PlanCard = ({ title, price, features, current, onSelect }) => (
-    <Card>
-      <BlockStack gap="400">
-        <Text variant="headingLg" as="h2">{title}</Text>
-        <Text variant="headingXl" as="h1">{price}</Text>
+  const PlanCard = ({ title, price, features, current, recommended, onSelect }) => (
+    <div style={{
+      background: recommended ? "linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%)" : "#fff",
+      padding: "24px",
+      borderRadius: "16px",
+      boxShadow: recommended ? "0 8px 24px rgba(255, 143, 0, 0.15)" : "0 4px 12px rgba(0,0,0,0.05)",
+      border: recommended ? "2px solid #FF9800" : "1px solid #EBEBEB",
+      position: "relative",
+      display: "flex",
+      flexDirection: "column",
+      height: "100%"
+    }}>
+      {recommended && (
+        <div style={{ position: "absolute", top: "-12px", left: "50%", transform: "translateX(-50%)" }}>
+          <Badge tone="warning">Most Popular</Badge>
+        </div>
+      )}
+      <BlockStack gap="400" style={{ flexGrow: 1 }}>
+        <div style={{ textAlign: "center" }}>
+          <Text variant="headingLg" as="h2">{title}</Text>
+          <div style={{ margin: "16px 0" }}>
+            <Text variant="heading3xl" as="h1" fontWeight="bold">{price}</Text>
+          </div>
+        </div>
         <Divider />
-        <List>
-          {features.map((f, i) => <List.Item key={i}>{f}</List.Item>)}
-        </List>
+        <div style={{ flexGrow: 1, padding: "16px 0" }}>
+          <List spacing="extraLoose">
+            {features.map((f, i) => <List.Item key={i}>{f}</List.Item>)}
+          </List>
+        </div>
         <Button 
-          variant={current ? "plain" : "primary"}
+          size="large"
+          variant={current ? "plain" : (recommended ? "primary" : "secondary")}
           disabled={current} 
           onClick={onSelect}
           loading={isLoading}
+          fullWidth
         >
           {current ? "Current Plan" : "Select Plan"}
         </Button>
       </BlockStack>
-    </Card>
+    </div>
   );
 
   return (
-    <Page title="Pricing & Plans">
+    <Page fullWidth>
+      <div style={{
+        background: "linear-gradient(135deg, #FFB75E 0%, #ED8F03 100%)",
+        borderRadius: "16px",
+        padding: "40px",
+        color: "white",
+        marginBottom: "48px",
+        textAlign: "center",
+        boxShadow: "0 10px 30px rgba(237, 143, 3, 0.2)",
+      }}>
+        <BlockStack gap="200" inlineAlign="center">
+          <Text as="h1" variant="heading2xl" fontWeight="bold">Grow With Us</Text>
+          <p style={{ fontSize: "16px", margin: 0, opacity: 0.9, maxWidth: "600px" }}>
+            Whether you're just starting out or scaling up, we have a plan designed to help you sell more effectively.
+          </p>
+        </BlockStack>
+      </div>
+
       <Layout>
         <Layout.Section>
           {actionData?.error && (
-            <div style={{ marginBottom: "1rem" }}>
+            <div style={{ marginBottom: "24px" }}>
               <Banner tone="critical" title="Billing Error">
                 <p>{actionData.error}</p>
               </Banner>
             </div>
           )}
-          <InlineGrid columns={3} gap="400">
+          <InlineGrid columns={{xs: 1, sm: 1, md: 3}} gap="400">
             <PlanCard 
               title="Free"
               price="$0/mo"
@@ -159,9 +200,11 @@ export default function Pricing() {
               features={[
                 "All 4 Premium Templates",
                 "Full Color & Style Customization",
-                "Unlimited Threshold"
+                "Unlimited Threshold",
+                "Priority Support"
               ]}
               current={activePlan === "Pro"}
+              recommended={true}
               onSelect={() => handlePlanSelect("Pro")}
             />
           </InlineGrid>

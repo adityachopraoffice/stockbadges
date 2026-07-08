@@ -5,7 +5,6 @@ import {
   Page,
   Layout,
   Card,
-  Button,
   BlockStack,
   TextField,
   InlineStack,
@@ -186,9 +185,25 @@ export default function Design() {
 
   return (
     <Page 
-      title="Design & Templates" 
+      fullWidth
       primaryAction={{ content: 'Save Design', onAction: handleSubmit, loading: isSaving }}
     >
+      <div style={{
+        background: "linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%)",
+        borderRadius: "16px",
+        padding: "40px",
+        color: "#333",
+        marginBottom: "32px",
+        boxShadow: "0 10px 30px rgba(255, 154, 158, 0.2)",
+      }}>
+        <BlockStack gap="200">
+          <Text as="h1" variant="heading2xl" fontWeight="bold">Design your perfect badge</Text>
+          <p style={{ fontSize: "16px", margin: 0, opacity: 0.8, maxWidth: "600px" }}>
+            Match the badge to your brand's unique style. Choose a starting template or build from scratch.
+          </p>
+        </BlockStack>
+      </div>
+
       <Layout>
         <Layout.Section>
           {!canUseTemplates && (
@@ -212,7 +227,7 @@ export default function Design() {
         </Layout.Section>
 
         <Layout.Section>
-          <Card>
+          <Card padding="500" roundedAbove="sm">
             <BlockStack gap="400">
               <Text variant="headingMd" as="h2">Select a Template</Text>
               <Grid>
@@ -221,13 +236,15 @@ export default function Design() {
                     <div 
                       onClick={() => applyTemplate(id)}
                       style={{
-                        padding: '20px',
-                        border: formState.templateStyle === id ? '2px solid #005bd3' : '1px solid #e1e3e5',
-                        borderRadius: '8px',
+                        padding: '24px 16px',
+                        border: formState.templateStyle === id ? '2px solid #FF6B6B' : '1px solid #F0F0F0',
+                        borderRadius: '12px',
                         cursor: canUseTemplates ? 'pointer' : 'not-allowed',
                         textAlign: 'center',
-                        backgroundColor: '#fafbfb',
-                        opacity: !canUseTemplates && id !== 'custom' ? 0.5 : 1
+                        backgroundColor: formState.templateStyle === id ? '#FFF5F5' : '#FFFFFF',
+                        boxShadow: '0 4px 12px rgba(0,0,0,0.03)',
+                        opacity: !canUseTemplates && id !== 'custom' ? 0.5 : 1,
+                        transition: 'all 0.2s ease'
                       }}
                     >
                       <div
@@ -237,10 +254,10 @@ export default function Design() {
                           padding: t.badgePadding || '4px 10px',
                           borderRadius: t.badgeBorderRadius || '4px',
                           display: "inline-block",
-                          marginBottom: '10px'
+                          marginBottom: '16px'
                         }}
                       >
-                        Preview
+                         Preview
                       </div>
                       <Text as="p" variant="bodyMd" fontWeight={formState.templateStyle === id ? "bold" : "regular"}>{t.name}</Text>
                     </div>
@@ -252,7 +269,7 @@ export default function Design() {
         </Layout.Section>
 
         <Layout.Section>
-          <Card>
+          <Card padding="500" roundedAbove="sm">
             <BlockStack gap="400">
               <Text variant="headingMd" as="h2">Customize Style</Text>
               
@@ -324,18 +341,23 @@ export default function Design() {
                 />
               </InlineStack>
 
-              <Text variant="headingMd" as="h2">Live Preview</Text>
-              <div
-                style={{
-                  backgroundColor: formState.badgeBgColor,
-                  color: formState.badgeTextColor,
-                  fontSize: formState.badgeFontSize,
-                  padding: formState.badgePadding,
-                  borderRadius: formState.badgeBorderRadius,
-                  display: "inline-block",
-                }}
-              >
-                {formState.badgeText.replace("{count}", formState.threshold)}
+              <div style={{ marginTop: "24px" }}>
+                <Text variant="headingMd" as="h2">Live Preview</Text>
+                <div style={{ background: "#FDFDFD", padding: "40px", borderRadius: "12px", border: "1px dashed #E0E0E0", marginTop: "16px", textAlign: "center" }}>
+                  <div
+                    style={{
+                      backgroundColor: formState.badgeBgColor,
+                      color: formState.badgeTextColor,
+                      fontSize: formState.badgeFontSize,
+                      padding: formState.badgePadding,
+                      borderRadius: formState.badgeBorderRadius,
+                      display: "inline-block",
+                      boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
+                    }}
+                  >
+                    {formState.badgeText.replace("{count}", formState.threshold)}
+                  </div>
+                </div>
               </div>
             </BlockStack>
           </Card>
