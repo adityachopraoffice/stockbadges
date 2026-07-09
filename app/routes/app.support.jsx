@@ -61,20 +61,7 @@ export default function Support() {
 
         <Layout.Section variant="oneThird">
           <BlockStack gap="400">
-            <Card padding="500" roundedAbove="sm">
-              <BlockStack gap="400">
-                <InlineStack gap="200" align="start" blockAlign="center">
-                  <div style={{ background: "#E8F5E9", padding: "8px", borderRadius: "8px", color: "#4CAF50" }}>
-                    <Icon source={ChatIcon} />
-                  </div>
-                  <Text variant="headingMd" as="h2">Contact Support</Text>
-                </InlineStack>
-                <p style={{ margin: 0, color: "#666" }}>
-                  Need technical assistance or have a billing question? Our team is available 24/7.
-                </p>
-                <Button size="large" fullWidth>Email Support</Button>
-              </BlockStack>
-            </Card>
+
 
             <Card padding="500" roundedAbove="sm">
               <BlockStack gap="400">
