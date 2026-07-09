@@ -4,14 +4,14 @@ embedded = true
 [access_scopes]
 scopes = "read_products,read_inventory"
 
-application_url = "https://stockbadges.vercel.app"
+application_url = "https://scarcitybadgepro.electrosale.shop"
 
 [auth]
-redirect_urls = ["https://stockbadges.vercel.app/api/auth", "https://stockbadges.vercel.app/auth/callback"]
+redirect_urls = ["https://scarcitybadgepro.electrosale.shop/api/auth", "https://scarcitybadgepro.electrosale.shop/auth/callback"]
 
 [webhooks]
 api_version = "2024-07"
 
   [[webhooks.subscriptions]]
   compliance_topics = ["customers/data_request", "customers/redact", "shop/redact"]
-  uri = "https://stockbadges.vercel.app/api/webhooks"
+  uri = "https://scarcitybadgepro.electrosale.shop/api/webhooks"

@@ -2,7 +2,7 @@
 
 client_id = "f6898681c3c1983e7274c7cdc41fc96d"
 name = "Scarcity Badge Pro"
-application_url = "https://stockbadges.vercel.app"
+application_url = "https://scarcitybadgepro.electrosale.shop"
 embedded = true
 
 [build]
@@ -13,17 +13,17 @@ api_version = "2026-10"
 
   [[webhooks.subscriptions]]
   compliance_topics = ["customers/data_request", "customers/redact", "shop/redact"]
-  uri = "https://stockbadges.vercel.app/api/webhooks"
+  uri = "https://scarcitybadgepro.electrosale.shop/api/webhooks"
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
 scopes = "read_inventory,read_products"
 
 [auth]
-redirect_urls = [ "https://stockbadges.vercel.app/api/auth", "https://stockbadges.vercel.app/auth/callback" ]
+redirect_urls = [ "https://scarcitybadgepro.electrosale.shop/api/auth", "https://scarcitybadgepro.electrosale.shop/auth/callback" ]
 
 [app_proxy]
-url = "https://stockbadges.vercel.app"
+url = "https://scarcitybadgepro.electrosale.shop"
 subpath = "stockbadge"
 prefix = "apps"
 
