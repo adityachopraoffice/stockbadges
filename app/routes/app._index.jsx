@@ -81,7 +81,7 @@ export default function Dashboard() {
             Supercharge Your Sales
           </Text>
           <p style={{ fontSize: "16px", color: "rgba(255,255,255,0.9)", maxWidth: "500px", margin: 0, lineHeight: "1.5" }}>
-            Stock badges create urgency and trust. Stores using our customized badges see an average conversion lift of 12%.
+            Scarcity Badge Pro creates urgency and trust. Stores using our customized badges see an average conversion lift of 12%.
           </p>
           <div style={{ display: "flex", gap: "16px", marginTop: "16px" }}>
             <Button size="large" onClick={() => navigate("/app/design")}>Customize Badge</Button>

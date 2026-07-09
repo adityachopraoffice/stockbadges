@@ -43,15 +43,15 @@ export default function Support() {
               </InlineStack>
               
               <div style={{ background: "#FAFAFA", padding: "24px", borderRadius: "12px", border: "1px solid #F0F0F0" }}>
-                <Text variant="headingMd" as="h3">How to add the Stock Badge to your product page</Text>
+                <Text variant="headingMd" as="h3">How to add Scarcity Badge Pro to your product page</Text>
                 <div style={{ height: "16px" }} />
                 <List type="number" spacing="loose">
                   <List.Item>Go to your Shopify Admin and click on **Online Store** &gt; **Themes**.</List.Item>
                   <List.Item>Click the **Customize** button on your active theme.</List.Item>
                   <List.Item>In the Theme Editor, use the top dropdown menu to navigate to **Products** &gt; **Default product**.</List.Item>
                   <List.Item>On the left sidebar, under the "Product Information" section, click **Add block**.</List.Item>
-                  <List.Item>Select **Stock Badge** from the list of blocks.</List.Item>
-                  <List.Item>Drag the Stock Badge block to your desired position (e.g., just below the Price).</List.Item>
+                  <List.Item>Select **Scarcity Badge Pro** from the list of blocks.</List.Item>
+                  <List.Item>Drag the Scarcity Badge Pro block to your desired position (e.g., just below the Price).</List.Item>
                   <List.Item>Click **Save** in the top right corner.</List.Item>
                 </List>
               </div>

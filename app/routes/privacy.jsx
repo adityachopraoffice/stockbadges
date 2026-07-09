@@ -1,7 +1,7 @@
 import { json } from "@remix-run/node";
 
 export const meta = () => {
-  return [{ title: "Privacy Policy | Stock Badges" }];
+  return [{ title: "Privacy Policy | Scarcity Badge Pro" }];
 };
 
 export default function PrivacyPolicy() {
@@ -28,7 +28,7 @@ export default function PrivacyPolicy() {
         
         <h2 style={{ fontSize: "24px", marginTop: "32px", color: "#1A1A1A" }}>1. Information We Collect</h2>
         <p>
-          When you install the Stock Badges app, we are automatically able to access certain types of information from your Shopify account:
+          When you install the Scarcity Badge Pro app, we are automatically able to access certain types of information from your Shopify account:
         </p>
         <ul style={{ paddingLeft: "20px" }}>
           <li><strong>Shop Information:</strong> Your shop domain, email address, and active plan details.</li>
@@ -38,7 +38,7 @@ export default function PrivacyPolicy() {
 
         <h2 style={{ fontSize: "24px", marginTop: "32px", color: "#1A1A1A" }}>2. How We Use Your Information</h2>
         <p>
-          We use the information we collect solely for the purpose of providing and improving the Stock Badges app functionality. Specifically:
+          We use the information we collect solely for the purpose of providing and improving the Scarcity Badge Pro app functionality. Specifically:
         </p>
         <ul style={{ paddingLeft: "20px" }}>
           <li>To display accurate low-stock badges to your customers.</li>
@@ -59,7 +59,7 @@ export default function PrivacyPolicy() {
 
         <h2 style={{ fontSize: "24px", marginTop: "32px", color: "#1A1A1A" }}>5. Contact Us</h2>
         <p>
-          If you have any questions about this Privacy Policy or how your data is handled, please contact us through the Support tab within the Stock Badges app dashboard, or email our support team directly.
+          If you have any questions about this Privacy Policy or how your data is handled, please contact us through the Support tab within the Scarcity Badge Pro app dashboard, or email our support team directly.
         </p>
 
       </div>
