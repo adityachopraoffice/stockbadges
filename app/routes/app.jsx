@@ -1,6 +1,7 @@
 import { json } from "@remix-run/node";
-import { Outlet, useLoaderData, Link } from "@remix-run/react";
+import { Outlet, useLoaderData, Link, useRouteError } from "@remix-run/react";
 import { AppProvider } from "@shopify/shopify-app-remix/react";
+import { boundary } from "@shopify/shopify-app-remix/server";
 import { authenticate } from "../shopify.server.js";
 import polarisStyles from "@shopify/polaris/build/esm/styles.css?url";
 
@@ -13,6 +14,10 @@ export async function loader({ request }) {
 
 export async function action() {
   return json({ error: "Method not allowed" }, { status: 405 });
+}
+
+export function ErrorBoundary() {
+  return boundary.error(useRouteError());
 }
 
 export default function App() {
