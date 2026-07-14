@@ -1,10 +1,9 @@
 import { json } from "@remix-run/node";
-import { Outlet, useLoaderData, Link, useRouteError, isRouteErrorResponse } from "@remix-run/react";
+import { Outlet, useLoaderData, Link, useRouteError } from "@remix-run/react";
 import { AppProvider } from "@shopify/shopify-app-remix/react";
 import { boundary } from "@shopify/shopify-app-remix/server";
 import { authenticate } from "../shopify.server.js";
 import polarisStyles from "@shopify/polaris/build/esm/styles.css?url";
-import { Page, Layout, Card, Spinner, BlockStack } from "@shopify/polaris";
 
 export const links = () => [{ rel: "stylesheet", href: polarisStyles }];
 
@@ -18,26 +17,7 @@ export async function action() {
 }
 
 export function ErrorBoundary() {
-  const error = useRouteError();
-  
-  if (isRouteErrorResponse(error) && error.status === 401) {
-    return (
-      <Page>
-        <Layout>
-          <Layout.Section>
-            <Card>
-              <BlockStack inlineAlign="center" gap="400">
-                <Spinner size="large" />
-                <p>Authenticating...</p>
-              </BlockStack>
-            </Card>
-          </Layout.Section>
-        </Layout>
-      </Page>
-    );
-  }
-  
-  return boundary.error(error);
+  return boundary.error(useRouteError());
 }
 
 export const headers = (headersArgs) => {

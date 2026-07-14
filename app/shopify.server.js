@@ -54,7 +54,7 @@ export const shopify = shopifyApp({
     },
   },
   future: {
-    unstable_newEmbeddedAuthStrategy: false,
+    unstable_newEmbeddedAuthStrategy: true,
   },
 });
 
