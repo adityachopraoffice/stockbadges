@@ -20,6 +20,10 @@ export function ErrorBoundary() {
   return boundary.error(useRouteError());
 }
 
+export const headers = (headersArgs) => {
+  return boundary.headers(headersArgs);
+};
+
 export default function App() {
   const { apiKey } = useLoaderData();
 
