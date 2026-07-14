@@ -14,6 +14,11 @@ import {
   Badge
 } from "@shopify/polaris";
 import { authenticate } from "../shopify.server.js";
+import { boundary } from "@shopify/shopify-app-remix/server";
+
+export const headers = (headersArgs) => {
+  return boundary.headers(headersArgs);
+};
 
 export async function loader({ request }) {
   const { billing, admin } = await authenticate.admin(request);

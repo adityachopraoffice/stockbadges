@@ -14,7 +14,12 @@ import {
   Banner
 } from "@shopify/polaris";
 import { authenticate } from "../shopify.server.js";
+import { boundary } from "@shopify/shopify-app-remix/server";
 import prisma from "../db.server.js";
+
+export const headers = (headersArgs) => {
+  return boundary.headers(headersArgs);
+};
 
 const TEMPLATES = {
   custom: { name: "Basic", badgeBgColor: "#FF4444", badgeTextColor: "#FFFFFF" },
