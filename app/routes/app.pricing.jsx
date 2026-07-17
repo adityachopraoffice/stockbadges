@@ -63,7 +63,7 @@ export async function action({ request }) {
       await billing.require({
         plans: [plan],
         isTest: isDevStore,
-        onFailure: async () => billing.request({ plan, isTest: isDevStore, returnUrl: adminUrl }),
+        onFailure: async () => billing.request({ plan, isTest: isDevStore, returnUrl: "/app/pricing" }),
       });
     } catch (error) {
       if (error instanceof Response || (error && typeof error.status === 'number')) throw error; // LET THE REDIRECT HAPPEN!
