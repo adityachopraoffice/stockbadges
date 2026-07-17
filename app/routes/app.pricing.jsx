@@ -57,13 +57,13 @@ export async function action({ request }) {
 
   if (plan === "Starter" || plan === "Pro") {
     try {
-      const cleanShopName = shop.replace('.myshopify.com', '');
-      const adminUrl = `https://admin.shopify.com/store/${cleanShopName}/apps/${process.env.SHOPIFY_API_KEY}/app/pricing`;
+      const appUrl = process.env.SHOPIFY_APP_URL || process.env.HOST || new URL(request.url).origin;
+      const absoluteReturnUrl = `${appUrl}/app/pricing`;
       
       await billing.require({
         plans: [plan],
         isTest: isDevStore,
-        onFailure: async () => billing.request({ plan, isTest: isDevStore, returnUrl: "/app/pricing" }),
+        onFailure: async () => billing.request({ plan, isTest: isDevStore, returnUrl: absoluteReturnUrl }),
       });
     } catch (error) {
       if (error instanceof Response || (error && typeof error.status === 'number')) throw error; // LET THE REDIRECT HAPPEN!
