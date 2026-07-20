@@ -1,10 +1,11 @@
 import { authenticate } from "../shopify.server.js";
+import prisma from "../db.server.js";
 
 export const action = async ({ request }) => {
   const { topic, shop, session, admin, payload } = await authenticate.webhook(request);
 
-  if (!admin) {
-    // The admin context isn't returned if the webhook fired after a shop was uninstalled.
+  // The admin context isn't returned if the webhook fired after a shop was uninstalled.
+  if (!admin && topic !== "APP_UNINSTALLED" && topic !== "CUSTOMERS_DATA_REQUEST" && topic !== "CUSTOMERS_REDACT" && topic !== "SHOP_REDACT") {
     throw new Response();
   }
 
@@ -13,8 +14,8 @@ export const action = async ({ request }) => {
   
   switch (topic) {
     case "APP_UNINSTALLED":
-      if (session) {
-        // await db.session.deleteMany({ where: { shop } });
+      if (shop) {
+        await prisma.session.deleteMany({ where: { shop } });
       }
       break;
 
@@ -32,6 +33,10 @@ export const action = async ({ request }) => {
       // Shop redact webhook
       // E.g., purge shop settings and analytics from the database within 48 hours.
       // We can handle db cleanup here.
+      if (shop) {
+         await prisma.shopSettings.deleteMany({ where: { shop } });
+         await prisma.dailyMetrics.deleteMany({ where: { shop } });
+      }
       break;
 
     default:
