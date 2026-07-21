@@ -15,45 +15,53 @@ import {
 } from "@shopify/polaris";
 import { authenticate } from "../shopify.server.js";
 import { boundary } from "@shopify/shopify-app-remix/server";
+import prisma from "../db.server.js";
 
 export const headers = (headersArgs) => {
   return boundary.headers(headersArgs);
 };
 
 export async function loader({ request }) {
-  const { billing, admin } = await authenticate.admin(request);
-  
-  const shopQuery = await admin.graphql(`query { shop { plan { partnerDevelopment } } }`);
-  const shopData = await shopQuery.json();
-  const isDevStore = shopData.data?.shop?.plan?.partnerDevelopment === true;
+  const { billing, session } = await authenticate.admin(request);
+  const isTest = process.env.APP_PUBLISHED !== "true";
   
   let activePlan = "Free";
   try {
     const billingCheck = await billing.check({
       plans: ["Starter", "Pro"],
-      isTest: isDevStore,
+      isTest,
     });
-    activePlan = billingCheck.hasActivePayment 
-      ? billingCheck.appSubscriptions[0].name 
-      : "Free";
+    
+    if (billingCheck.hasActivePayment) {
+      activePlan = billingCheck.appSubscriptions[0].name;
+    } else {
+      throw new Error("No active payment found via check");
+    }
   } catch (error) {
     if (error instanceof Response) throw error;
-    console.error("Billing check failed:", error);
-    activePlan = "Free";
+    console.error("Billing check failed or returned no active payment:", error);
+    
+    try {
+      const shopSettings = await prisma.shopSettings.findUnique({
+        where: { shop: session.shop },
+      });
+      activePlan = shopSettings?.plan || "Free";
+    } catch (dbError) {
+      console.error("Fallback DB check failed:", dbError);
+      activePlan = "Free";
+    }
   }
 
   return json({ activePlan });
 }
 
 export async function action({ request }) {
-  const { billing, admin, session } = await authenticate.admin(request);
+  const { billing, session } = await authenticate.admin(request);
   const { shop } = session;
   const formData = await request.formData();
   const plan = formData.get("plan");
-
-  const shopQuery = await admin.graphql(`query { shop { plan { partnerDevelopment } } }`);
-  const shopData = await shopQuery.json();
-  const isDevStore = shopData.data?.shop?.plan?.partnerDevelopment === true;
+  
+  const isTest = process.env.APP_PUBLISHED !== "true";
 
   if (plan === "Starter" || plan === "Pro") {
     try {
@@ -63,8 +71,8 @@ export async function action({ request }) {
       
       await billing.require({
         plans: [plan],
-        isTest: isDevStore,
-        onFailure: async () => billing.request({ plan, isTest: isDevStore, returnUrl: adminUrl }),
+        isTest,
+        onFailure: async () => billing.request({ plan, isTest, returnUrl: adminUrl }),
       });
     } catch (error) {
       if (error instanceof Response || (error && typeof error.status === 'number')) throw error; // LET THE REDIRECT HAPPEN!
@@ -75,13 +83,13 @@ export async function action({ request }) {
     try {
       const billingCheck = await billing.check({
         plans: ["Starter", "Pro"],
-        isTest: isDevStore,
+        isTest,
       });
       
       if (billingCheck.hasActivePayment) {
         await billing.cancel({
           subscriptionId: billingCheck.appSubscriptions[0].id,
-          isTest: isDevStore,
+          isTest,
           prorate: true,
         });
       }

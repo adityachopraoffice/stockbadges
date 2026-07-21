@@ -5,7 +5,7 @@ export const action = async ({ request }) => {
   const { topic, shop, session, admin, payload } = await authenticate.webhook(request);
 
   // The admin context isn't returned if the webhook fired after a shop was uninstalled.
-  if (!admin && topic !== "APP_UNINSTALLED" && topic !== "CUSTOMERS_DATA_REQUEST" && topic !== "CUSTOMERS_REDACT" && topic !== "SHOP_REDACT") {
+  if (!admin && topic !== "APP_UNINSTALLED" && topic !== "CUSTOMERS_DATA_REQUEST" && topic !== "CUSTOMERS_REDACT" && topic !== "SHOP_REDACT" && topic !== "APP_SUBSCRIPTIONS_UPDATE") {
     throw new Response();
   }
 
@@ -36,6 +36,23 @@ export const action = async ({ request }) => {
       if (shop) {
          await prisma.shopSettings.deleteMany({ where: { shop } });
          await prisma.dailyMetrics.deleteMany({ where: { shop } });
+      }
+      break;
+
+    case "APP_SUBSCRIPTIONS_UPDATE":
+      if (shop && payload?.app_subscription) {
+        const status = payload.app_subscription.status;
+        const planName = payload.app_subscription.name;
+        
+        let newPlan = "Free";
+        if (status === "ACTIVE") {
+          newPlan = planName;
+        }
+
+        await prisma.shopSettings.updateMany({
+          where: { shop },
+          data: { plan: newPlan },
+        });
       }
       break;
 

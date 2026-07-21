@@ -39,7 +39,7 @@ model ShopSettings {
   badgeFontSize     String   @default("14px")
   badgePadding      String   @default("4px 10px")
   badgeBorderRadius String   @default("4px")
-  mockPlan          String   @default("Free")
+  plan              String   @default("Free")
 }
 
 model DailyMetrics {
