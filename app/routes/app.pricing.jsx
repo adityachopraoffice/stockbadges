@@ -203,7 +203,7 @@ export default function Pricing() {
             />
             <PlanCard 
               title="Starter"
-              price="$9.99/mo"
+              price="$19/mo"
               features={[
                 "All 4 Premium Templates",
                 "No Customization",
@@ -214,7 +214,7 @@ export default function Pricing() {
             />
             <PlanCard 
               title="Pro"
-              price="$19.99/mo"
+              price="$23/mo"
               features={[
                 "All 4 Premium Templates",
                 "Full Color & Style Customization",

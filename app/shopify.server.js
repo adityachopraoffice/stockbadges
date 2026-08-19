@@ -44,14 +44,14 @@ export const shopify = shopifyApp({
   billing: {
     "Starter": {
       lineItems: [{
-        amount: 9.99,
+        amount: 19,
         currencyCode: "USD",
         interval: BillingInterval.Every30Days,
       }],
     },
     "Pro": {
       lineItems: [{
-        amount: 19.99,
+        amount: 23,
         currencyCode: "USD",
         interval: BillingInterval.Every30Days,
       }],
